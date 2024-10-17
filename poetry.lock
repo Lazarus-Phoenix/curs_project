@@ -398,6 +398,17 @@ files = [
 ]
 
 [[package]]
+name = "tk"
+version = "0.1.0"
+description = "TensorKit is a deep learning helper between Python and C++."
+optional = false
+python-versions = "*"
+files = [
+    {file = "tk-0.1.0-py3-none-any.whl", hash = "sha256:703a69ff0d5ba2bd2f7440582ad10160e4a6561595d33457dc6caa79b9bf4930"},
+    {file = "tk-0.1.0.tar.gz", hash = "sha256:60bc8923d5d35f67f5c6bd93d4f0c49d2048114ec077768f959aef36d4ed97f8"},
+]
+
+[[package]]
 name = "tzdata"
 version = "2024.2"
 description = "Provider of IANA time zone data"
@@ -428,4 +439,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "6f421e4ce3df9bcf2db7995e07fc1f31d7b325d5bdbca526e3b38879fb40272e"
+content-hash = "290a0a0f04b7934545af4d73b9108af739c62ebb078f1a9d77a03d9cd4e09ed4"

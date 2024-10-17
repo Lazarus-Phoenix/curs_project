@@ -47,7 +47,7 @@ def generate_json(current_date, transactions):
 @handle_error
 def filtered_cards(transactions):
     """Функция, возвращающая правильный список карт
-    и кэшбек на положительные траты
+    и положительный кэшбек , потому что отнимать кэшбэк это оксюморон.
     """
     cards = []
     for transaction in transactions:

@@ -3,12 +3,15 @@ import requests
 from dotenv import load_dotenv
 import json
 
+from src.logger import setup_logger
+
 # Загружаем переменные окружения из .env файла
 load_dotenv()
 
 # Актуальный API ключ
 API_KEY_2 = os.getenv("STOCK_API_KEY")
 
+logger = setup_logger("utils", "logs/user_settings.log")
 
 def load_user_settings():
     project_root = '/home/oem/PycharmProjects/curs_project/'
@@ -18,21 +21,16 @@ def load_user_settings():
         with open(settings_path, 'r') as f:
             return json.load(f)
     except FileNotFoundError:
-        print(f"Файл user_settings.json не найден в {project_root}")
+        logger(f"Файл user_settings.json не найден в {project_root}")
         return {}
     except json.JSONDecodeError:
-        print(f"Ошибка при декодировании JSON в {settings_path}")
+        logger(f"Ошибка при декодировании JSON в {settings_path}")
         return {}
 
 
 # Загрузка настроек при инициализации модуля
 settings = load_user_settings()
 
-# Настройки пользователей
-# settings = {
-#     "user_currencies": ["USD", "EUR"],
-#     "user_stocks": ["AAPL", "AMZN", "GOOGL", "MSFT", "TSLA"]
-# }
 
 def get_current_price(currency=None):
     '''������� ���������� �������� �� ���������������� �������� ������'''
