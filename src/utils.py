@@ -64,7 +64,7 @@ def filtered_cards(transactions):
 @handle_error
 def filtered_top(transactions):
     """Функция, возвращающая топ 3 транзакций по платежам"""
-    sort_current_transactions = sorted(transactions, reverse=True, key=lambda x: abs(x["Сумма платежа"]))
+    sort_current_transactions = sorted(transactions, reverse=True, key=lambda x: abs(x["Сумма платежа"]),)
     top_list = []
     for transaction in sort_current_transactions:
         top = {
