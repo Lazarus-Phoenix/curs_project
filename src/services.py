@@ -1,6 +1,7 @@
 import json
 import re
 from typing import Dict, List
+
 from src.logger import setup_logger
 from src.utils import get_excel
 
@@ -26,7 +27,5 @@ def search_transaction_by_mobile_phone(transactions: List[Dict]) -> str:
 
 testing = get_excel("dict")
 
-if __name__ == "__main__":
-    print(search_transaction_by_mobile_phone(testing))
-
-
+# if __name__ == "__main__":
+#     print(search_transaction_by_mobile_phone(testing))

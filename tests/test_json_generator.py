@@ -1,5 +1,3 @@
-# test_json_generator.py
-
 import pytest
 from src.json_generator import get_transactions, generate_json_response
 from unittest.mock import patch
@@ -13,7 +11,7 @@ def test_get_transactions(mock_get_excel):
         {"Дата платежа": "150124", "Сумма операции": 200}
     ]
 
-    result = get_transactions("2023-01-15 12:00:00")
+    result = get_transactions("2021-03-07 17:13:11")
     assert isinstance(result, list)
     assert len(result) == 0
 

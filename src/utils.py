@@ -2,9 +2,11 @@
 import os
 
 import pandas as pd
+
 from src.logger import setup_logger
 
 logger = setup_logger("utils", "logs/utils.log")
+
 
 def handle_error(func):
     def wrapper(*args, **kwargs):
@@ -13,10 +15,13 @@ def handle_error(func):
         except Exception as e:
             print(f"Возникла ошибка: {str(e)}")
             # Здесь можно добавить дополнительную логику обработки ошибок
+
     return wrapper
+
 
 def read_excel(file_path):
     return pd.read_excel(file_path)
+
 
 @handle_error
 def get_excel(formatting):
@@ -36,6 +41,7 @@ def get_excel(formatting):
 
 # print(get_excel('dataframe'))
 
+
 @handle_error
 def generate_json(current_date, transactions):
     """Функция, возвращающая отфильтрованные по дате транзакции"""
@@ -48,6 +54,7 @@ def generate_json(current_date, transactions):
             current_transactions.append(transaction)
     return current_transactions
 
+
 @handle_error
 def filtered_cards(transactions):
     """Функция, возвращающая правильный список карт
@@ -58,7 +65,7 @@ def filtered_cards(transactions):
         card = {
             "last_digit": transaction["Номер карты"],
             "total_spent": transaction["Сумма операции"],
-            "cashback": round(transaction["Сумма операции"] * 0.01, 2) if transaction["Сумма операции"] > 0 else 0
+            "cashback": (round(transaction["Сумма операции"] * 0.01, 2) if transaction["Сумма операции"] > 0 else 0),
             # "cashback": round(transaction["Сумма операции"] / 100, 2),
         }
         cards.append(card)
@@ -68,7 +75,11 @@ def filtered_cards(transactions):
 @handle_error
 def filtered_top(transactions):
     """Функция, возвращающая топ 3 транзакций по платежам"""
-    sort_current_transactions = sorted(transactions, reverse=True, key=lambda x: abs(x["Сумма платежа"]),)
+    sort_current_transactions = sorted(
+        transactions,
+        reverse=True,
+        key=lambda x: abs(x["Сумма платежа"]),
+    )
     top_list = []
     for transaction in sort_current_transactions:
         top = {
@@ -81,5 +92,3 @@ def filtered_top(transactions):
         if len(top_list) == 3:
             break
     return top_list
-
-

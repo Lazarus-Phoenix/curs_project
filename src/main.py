@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
+import logging
+
+from src.json_generator import generate_json_response
+from src.logger import setup_logger
 from src.reports import spending_by_category
 from src.services import search_transaction_by_mobile_phone, testing
 from src.utils import get_excel
-from src.json_generator import generate_json_response
-import logging
-from src.logger import setup_logger
+
 
 def main():
-    '''Итоговая функция, которая запускает  в качестве DEMO весь функционал программы'''
+    """Итоговая функция, которая запускает  в качестве DEMO весь функционал программы"""
 
     logger = setup_logger("main", "logs/main.log")
-    
+
     logger.info("Программа запущена")
     print("\nПривет!\n Добро пожаловать в программу работы с банковскими транзакциями.\n")
     print("Выберите необходимый пункт меню:\n")
@@ -42,11 +44,9 @@ def main():
         period_data = input("Введите от какой даты выборка за 3 месяца: ")
         category_name = input("Введите на выбор(Фасфуд, ЖКХ, Связь, Транспорт): ")
 
-        print(*spending_by_category(get_excel('dataframe'), category_name, period_data), sep="\n")
+        print(*spending_by_category(get_excel("dataframe"), category_name, period_data), sep="\n")
         return
 
 
 if __name__ == "__main__":
-     main()
-
-
+    main()

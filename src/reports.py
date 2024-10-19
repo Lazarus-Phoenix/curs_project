@@ -2,10 +2,11 @@
 import functools
 from datetime import datetime
 from typing import Optional
-from src.logger import setup_logger
+
 import pandas as pd
 from dateutil.relativedelta import relativedelta
 
+from src.logger import setup_logger
 
 logger = setup_logger("reports", "logs/reports.log")
 
@@ -21,6 +22,7 @@ def report_decorator(filename=None):
                 f.write(f"{result}\n")
             logger.info(f"Записан результат работы функции {func}")
             return result
+
         logger.info(f"Записан результат работы функции {func}")
         return wrapper
 
@@ -65,5 +67,3 @@ def spending_by_category(transactions: pd.DataFrame, category: str, date: Option
             current_transactions.append(transaction.to_dict())
     logger.info(f"Траты за последние три месяца от {date} по категории {category}")
     return current_transactions
-
-

@@ -1,7 +1,8 @@
+import json
 import os
+
 import requests
 from dotenv import load_dotenv
-import json
 
 from src.logger import setup_logger
 
@@ -12,6 +13,7 @@ load_dotenv()
 API_KEY_2 = os.getenv("STOCK_API_KEY")
 
 logger = setup_logger("user_settings", "logs/user_settings.log")
+
 
 def load_user_settings():
     """
@@ -26,11 +28,11 @@ def load_user_settings():
     """
     logger.debug("Начало загрузки настроек пользователя")
 
-    project_root = '/home/oem/PycharmProjects/curs_project/'
-    settings_path = os.path.join(project_root, 'user_settings.json')
+    project_root = "/home/oem/PycharmProjects/curs_project/"
+    settings_path = os.path.join(project_root, "user_settings.json")
 
     try:
-        with open(settings_path, 'r') as f:
+        with open(settings_path, "r") as f:
             return json.load(f)
     except FileNotFoundError:
         logger.error(f"Файл user_settings.json не найден в {project_root}")
@@ -39,10 +41,12 @@ def load_user_settings():
         logger.error(f"Ошибка при декодировании JSON в {settings_path}")
         return {}
 
+
 logger.info("Настройки пользователя успешно загружены")
 
 # Загрузка настроек при инициализации модуля
 settings = load_user_settings()
+
 
 def get_current_price(currency=None):
     """
@@ -62,16 +66,17 @@ def get_current_price(currency=None):
 
     if currency is None:
         return []
-    
+
     url = f"https://api.exchangerate-api.com/v4/latest/{currency}"
     response = requests.get(url)
-    
+
     if response.status_code != 200:
         raise Exception(f"Failed to fetch exchange rate. Status code: {response.status_code}")
-    
+
     data = response.json()
-    rate = data['rates']['RUB']
+    rate = data["rates"]["RUB"]
     return {"currency": currency, "rate": rate}
+
 
 def get_current_stock():
     """
@@ -85,11 +90,10 @@ def get_current_stock():
     response = requests.request("GET", url, data=payload)
     result = response.json()
     currency_stock = []
-    for stock in result:
-        for my_stock in settings["user_stocks"]:
-            if stock["symbol"] == my_stock:
-                currency_stock.append({"stock": stock["symbol"], "price": stock["price"]})
+
     return currency_stock
+
+
 def add_to_list():
     """
     Добавляет актуальные курсы валют в список.
@@ -98,7 +102,7 @@ def add_to_list():
         list: Список словарей с актуальными курсами валют.
     """
     logger.debug("Добавление актуальных курсов валют в список")
-    
+
     currency_list = []
     for currency in settings["user_currencies"]:
         currency_list.append(get_current_price(currency))
