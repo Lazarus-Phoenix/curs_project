@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 from src.json_generator import generate_json_response
 
 def main():

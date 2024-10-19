@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
 import datetime
+from itertools import chain
+
 from src.utils import get_excel, filtered_cards, filtered_top
 from src.user_settings import get_current_price, get_current_stock, settings
 
@@ -50,20 +52,26 @@ def get_transactions(current_date):
     # Преобразуем даты в объекты datetime
     start_date = datetime.datetime.strptime(start_date, "%Y-%m-%d")
     current_date = datetime.datetime.strptime(current_date, "%Y-%m-%d %H:%M:%S")
-    
+
     def safe_parse_date(date_str):
         try:
             return datetime.datetime.strptime(str(date_str), "%d.%m.%Y")
         except ValueError:
             return None
-    
-    return [t for t in transactions if 
-            (date := safe_parse_date(t["Дата платежа"])) is not None and 
+
+    return [t for t in transactions if
+            (date := safe_parse_date(t["Дата платежа"])) is not None and
             start_date <= date <= current_date]
+
+
+
 
 def generate_json_response(current_date):
     """Главная функция, генерирующая JSON-ответ."""
     transactions = get_transactions(current_date)
+    if not transactions:
+        print("No transactions found")
+        return json.dumps({"error": "No transactions found"}, ensure_ascii=False, indent=4)
     print(f"Количество транзакций: {len(transactions)}")
     
     response = {

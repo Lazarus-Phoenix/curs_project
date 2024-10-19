@@ -1,0 +1,1 @@
+2024-10-19 08:19:29,849 - utils - ERROR: Error reading Excel file: [Errno 2] No such file or directory: '/home/oem/PycharmProjects/curs_project/../data/operations.xlsx'

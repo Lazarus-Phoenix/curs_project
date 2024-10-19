@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import os
+
 import pandas as pd
 from src.logger import setup_logger
 
@@ -18,16 +20,18 @@ def read_excel(file_path):
 
 @handle_error
 def get_excel(formatting):
-    """Читает файл и форматирует в дф или словарь"""
-    get_excel_file = pd.read_excel("../data/operations.xlsx")
-    logger.info("файл перекодирован в список словарей")
-    if formatting == "dataframe":
-        return get_excel_file
-    elif formatting == "dict":
-        return get_excel_file.to_dict(orient="records")
-    else:
-        logger.error("Возникла ошибка")
-        raise ValueError("Invalid format specified. Use 'dataframe' or 'dict'.")
+    try:
+        file_path = os.path.join(os.getcwd(), "../data/operations.xlsx")
+        df = pd.read_excel(file_path)
+        if formatting == "dict":
+            return df.to_dict(orient="records")
+        elif formatting == "dataframe":
+            return df
+        else:
+            raise ValueError("Invalid format specified. Use 'dataframe' or 'dict'.")
+    except Exception as e:
+        logger.error(f"Error reading Excel file: {str(e)}")
+        return []  # Возвращаем пустой список вместо None
 
 
 # print(get_excel('dataframe'))
