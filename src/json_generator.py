@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
 import json
-from itertools import chain
 
 from src.user_settings import get_current_price, get_current_stock, settings
 from src.utils import filtered_cards, filtered_top, get_excel
@@ -12,13 +11,13 @@ def get_greeting():
     current_time_now = datetime.datetime.now()
 
     if 6 <= current_time_now.hour < 12:
-        return f"Доброе утро!"
+        return "Доброе утро!"
     elif 12 <= current_time_now.hour < 18:
-        return f"Добрый день!"
+        return "Добрый день!"
     elif 18 <= current_time_now.hour < 24:
-        return f"Добрый вечер!"
+        return "Добрый вечер!"
     else:
-        return f"Доброй ночи"
+        return "Доброй ночи"
 
 
 def get_start_date(current_date):
@@ -67,7 +66,7 @@ def generate_json_response(current_date):
     return json.dumps(response, ensure_ascii=False, indent=4)
 
 
-# # Пример использования
-# if __name__ == "__main__":
-#     current_date = "2020-05-20 12:00:00"
-#     print(generate_json_response(current_date))
+# Пример использования
+if __name__ == "__main__":
+    current_date = "2020-05-20 12:00:00"
+    print(generate_json_response(current_date))

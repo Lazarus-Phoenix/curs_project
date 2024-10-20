@@ -4,7 +4,7 @@
 
 ## Использование
 
-Демка функционирования и работы предоставлямого API функционала при запуске модуля src/main.py.
+Демка функционирования и работы предоставлямого API функционала при запуске модуля src/views.py.
 
 ## Функционал
 
@@ -37,7 +37,25 @@
 - Для проверки покрытия тестами используйте команду `pytest --cov`
 
 ## Структура проекта
-markdown curs_project/ ├── src/ │ ├── init.py │ ├── main.py │ ├── services.py │ ├── reports.py │ ├── utils.py │ ├── views.py │ └── logger.py ├── tests/ │ ├── test_main.py │ ├── test_views.py │ ├── test_json_generator.py │ ├── test_user_settings.py │ ├── test_utils.py │ └── test_reports.py ├── data/ │ └── operations.xlsx ├── logs/ └── README.md
+markdown curs_project/ 
+├── src/ 
+│ ├── init.py 
+│ ├── main.py 
+│ ├── services.py 
+│ ├── reports.py 
+│ ├── utils.py 
+│ ├── views.py  <---API для страницы "Главная"
+│ └── logger.py 
+├── tests/ 
+│ ├── test_views.py 
+│ ├── test_json_generator.py 
+│ ├── test_user_settings.py 
+│ ├── test_utils.py 
+│ └── test_reports.py 
+├── data/ 
+│ └── operations.xlsx 
+├── logs/
+└── README.md
 
 
 ## Зависимости
@@ -57,15 +75,18 @@ markdown curs_project/ ├── src/ │ ├── init.py │ ├── main.p
 1. Клонировать репозиторий
 2. Создать виртуальное окружение и активировать его
 3. Установить зависимости: `pip install -r requirements.txt`
-4. Запустить основной скрипт: `python src/main.py`
+4. Запустить основной скрипт: `python src/views.py`
 
 ## API Документация
 
-Доступна в формате Swagger UI после запуска основного скрипта.
+Доступна в формате личного повествования бывалого кодера который 
+ отродясь не кодил, да кааак только начал , успев всего по одному разу прочесть 
+матчасть. 
+ Аллилуйя братья и сестры ,-Аллилуйя, вы присутствовали при истинном проявлении чуда!
 
 ## Авторы
 
-[Ваше имя]
+[Lazarus_Phoenix] 
 
 ## Лицензия
 
@@ -74,3 +95,4 @@ markdown curs_project/ ├── src/ │ ├── init.py │ ├── main.p
 ## Благодарности
 
 Спасибо за использование нашего приложения для анализа транзакций!!!
+Следите за нашим творчеством,- мы вас не разочаруем. 

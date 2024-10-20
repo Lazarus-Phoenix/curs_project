@@ -74,7 +74,7 @@ def get_current_price(currency=None):
         raise Exception(f"Failed to fetch exchange rate. Status code: {response.status_code}")
 
     data = response.json()
-    rate = data["rates"]["RUB"]
+    rate = ["RUB"]
     return {"currency": currency, "rate": rate}
 
 
@@ -89,8 +89,13 @@ def get_current_stock():
     payload = {}
     response = requests.request("GET", url, data=payload)
     result = response.json()
+
     currency_stock = []
 
+    for stock in result:
+        for my_stock in settings["user_stocks"]:
+            if stock["symbol"] == my_stock:
+                currency_stock.append({"stock": stock["symbol"], "price": stock["price"]})
     return currency_stock
 
 

@@ -14,7 +14,6 @@ def handle_error(func):
             return func(*args, **kwargs)
         except Exception as e:
             print(f"Возникла ошибка: {str(e)}")
-            # Здесь можно добавить дополнительную логику обработки ошибок
 
     return wrapper
 
