@@ -39,8 +39,7 @@
 ## Структура проекта
 markdown curs_project/ 
 ├── src/ 
-│ ├── init.py 
-│ ├── main.py 
+│ ├── init.py
 │ ├── services.py 
 │ ├── reports.py 
 │ ├── utils.py 
