@@ -39,21 +39,37 @@
 ## Структура проекта
 markdown curs_project/ 
 ├── src/ 
+
 │ ├── init.py
+
 │ ├── services.py 
+
 │ ├── reports.py 
+
 │ ├── utils.py 
+
 │ ├── views.py  <---API для страницы "Главная"
-│ └── logger.py 
+
+│ └── logger.py
+
 ├── tests/ 
+
 │ ├── test_views.py 
+
 │ ├── test_json_generator.py 
+
 │ ├── test_user_settings.py 
+
 │ ├── test_utils.py 
+
 │ └── test_reports.py 
+
 ├── data/ 
+
 │ └── operations.xlsx 
+
 ├── logs/
+
 └── README.md
 
 
